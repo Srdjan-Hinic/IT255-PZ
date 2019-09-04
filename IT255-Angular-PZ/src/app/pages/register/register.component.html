@@ -1,0 +1,30 @@
+<form role="form" class="container" [formGroup]="registerForm">
+    <div class="alert alert-danger" style="display: none;"></div>
+    <div class="form-group">
+        <label for="firstName">First name:</label>
+        <input type="text" class="form-control" formControlName='firstName'>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name:</label>
+        <input type="text" class="form-control" formControlName='lastName'>
+    </div>
+    <div class="form-group">
+        <label for="pid">Personal ID:</label>
+        <input type="number" class="form-control" formControlName='pid'>
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" formControlName='password'>
+    </div>
+    <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" class="form-control" formControlName='country'>
+        <!-- <select class="selectpicker countrypicker" data-flag="true" class="form-control" formControlName='country'></select>
+        <select class="form-control bfh-countries" data-country="US"></select>
+        <script>
+            $('.countrypicker').countrypicker();
+        </script> -->
+    </div>
+
+    <button (click)="register()" class="btn btn-primary">Register</button>
+</form>

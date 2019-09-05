@@ -1,1 +1,90 @@
-<p>addflight works!</p>
+<form role="form" class="container" [formGroup]="addFlightForm">
+    <div class="alert alert-danger" style="display: none;"></div>
+    <div class="form-group text-center">
+        <h1>Add new Flight</h1>
+        <hr>
+
+    </div>
+    <h1>Departure date</h1>
+    <div class="form-group">
+        <!-- <label for="departureDate">Departure date:</label> -->
+
+        <ngb-datepicker #dp [(ngModel)]="departureDate" (navigate)="date = $event.next" formControlName='departureDate'></ngb-datepicker>
+        <br>
+        <h2>Departure time</h2>
+        <ngb-timepicker [(ngModel)]="departureTime" formControlName='departureTime'></ngb-timepicker>
+
+    </div>
+    <hr>
+    <h1>Departure Airport:</h1>
+
+    <div class="form-group">
+        <label for="country">Country:</label>
+
+        <select [(ngModel)]="selectedDepartureCountry" (change)="printCountry()" class="browser-default custom-select" formControlName='departureCountry'>
+                    
+                    <option *ngFor="let country of countries"
+                    [value] ='country.country'> {{country.country}}
+                    </option>
+                    
+                  </select>
+    </div>
+
+    <div class="form-group">
+        <label for="airport">Airport:</label>
+
+        <select (change)="printAirport()" [(ngModel)]="selectedDepartureAirport" class="browser-default custom-select" formControlName='departureAirport'>
+                        
+                        <option *ngFor="let airport of airports | AirportPipe:selectedDepartureCountry" 
+                        [value]='airport | json' > 
+                       {{airport.name}}
+                        </option>
+                        
+                      </select>
+    </div>
+
+    <h1>Arrival date</h1>
+    <div class="form-group">
+        <!-- <label for="departureDate">Departure date:</label> -->
+
+        <ngb-datepicker #dp [(ngModel)]="arrivalDate" (navigate)="date = $event.next" formControlName='arrivalDate'></ngb-datepicker>
+        <br>
+        <h2>Arrival time:</h2>
+        <ngb-timepicker [(ngModel)]="arrivalTime" formControlName='arrivalTime'></ngb-timepicker>
+
+    </div>
+    <hr>
+    <h1>Arrival Airport:</h1>
+
+    <div class="form-group">
+        <label for="country">Country:</label>
+
+        <select [(ngModel)]="selectedArrivalCountry" (change)="printCountry()" class="browser-default custom-select" formControlName='arrivalCountry'>
+                    
+                    <option *ngFor="let country of countries"
+                    [value] ='country.country'> {{country.country}}
+                    </option>
+                    
+                  </select>
+    </div>
+
+    <div class="form-group">
+        <label for="airport">Airport:</label>
+
+        <select (change)="printAirport()" [(ngModel)]="selectedArrivalAirport" class="browser-default custom-select" formControlName='arrivalAirport'>
+                        
+                        <option *ngFor="let airport of airports | AirportPipe:selectedArrivalCountry" 
+                        [value]='airport | json' > 
+                       {{airport.name}}
+                        </option>
+                        
+                      </select>
+    </div>
+    <hr>
+    <h2>Tickets</h2>
+    <div class="form-group">
+        <label for="numTickets">Number of tickets:</label>
+        <input type="number" class="form-control" formControlName='numTickets'>
+    </div>
+    <button (click)="addFlight()" class="btn btn-primary">Add Flight</button>
+</form>

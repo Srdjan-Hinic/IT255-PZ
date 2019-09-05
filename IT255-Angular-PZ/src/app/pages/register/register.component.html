@@ -18,13 +18,11 @@
     </div>
     <div class="form-group">
         <label for="country">Country:</label>
-        <input type="text" class="form-control" formControlName='country'>
-        <!-- <select class="selectpicker countrypicker" data-flag="true" class="form-control" formControlName='country'></select>
-        <select class="form-control bfh-countries" data-country="US"></select>
-        <script>
-            $('.countrypicker').countrypicker();
-        </script> -->
+        <select id='country-select' class="browser-default custom-select" formControlName='count'>
+            <option *ngFor="let country of countries"
+            [value]='country.id' > {{country.country}}
+            </option>
+        </select>
     </div>
-
     <button (click)="register()" class="btn btn-primary">Register</button>
 </form>

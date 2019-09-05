@@ -1,0 +1,75 @@
+<h1>Add Airport</h1>
+<form role="form" class="container" [formGroup]="addAirportForm">
+    <div class="alert alert-danger" style="display: none;"></div>
+    <div class="form-group">
+        <label for="firstName">Airport Name:</label>
+        <input type="text" class="form-control" formControlName='airportName'>
+    </div>
+    <div class="form-group">
+        <label for="lastName">City:</label>
+        <input type="text" class="form-control" formControlName='city'>
+    </div>
+    <div class="form-group">
+        <label for="country">Country:</label>
+
+        <select class="browser-default custom-select" formControlName='count'>
+            
+            <option *ngFor="let country of countries" 
+            [value]='country.id' > {{country.country}}
+            </option>
+            
+          </select>
+    </div>
+
+    <button (click)="addAirport()" class="btn btn-primary">Add Airport</button>
+</form>
+<br>
+<h1>Manage Airports</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let airport of airports">
+            <td>{{airport.name}}</td>
+            <td>{{airport.city}}</td>
+            <td>{{airport.country}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" *ngIf='this._auth.isAdmin | async' (click)='editAirport(airport)' data-toggle="modal" data-target="#editModal">Edit Airport</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Airport</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form class="container " role="form" [formGroup]="editAirportForm">
+                    <div class="alert alert-danger" style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomsize">Airport name:</label>
+                        <input type="text" class="form-control" formControlName='name' [value]='airport.name'>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal">Close</button>
+                <button (click)="updateAirport()" class="btn btn-primary">Edit Airport</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import { AirportManagementComponent } from './pages/airport-management/airport-management.component';
 import { MyflightsComponent } from './pages/myflights/myflights.component';
 import { AddflightComponent } from './pages/addflight/addflight.component';
 import { AdminGuardService } from './services/admin-guard.service';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: "flights", component: FlightsComponent },
   { path: "addflight", component: AddflightComponent, canActivate: [AdminGuardService] },
   { path: "myflights", component: MyflightsComponent, canActivate: [AuthGuardService] },
-  { path: "**", component: HomeComponent },
+  { path: "airport-management", component: AirportManagementComponent, canActivate: [AdminGuardService] },
+  { path: "**", component: HomeComponent }
 ];
 
 @NgModule({

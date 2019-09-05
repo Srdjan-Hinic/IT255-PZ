@@ -21,6 +21,9 @@
                 <li class="nav-item" *ngIf="((this._authService.isAdmin && this._authService.isAuth) | async)">
                     <a class="nav-link" routerLink="/addflight">Add flight</a>
                 </li>
+                <li class="nav-item" *ngIf="((this._authService.isAdmin && this._authService.isAuth) | async)">
+                    <a class="nav-link" routerLink="/airport-management">Airport Management</a>
+                </li>
                 <li class="nav-item" *ngIf="!(this._authService.isAuth | async)">
                     <a class="nav-link" routerLink="/login">Log In</a>
                 </li>
